@@ -1,1 +1,402 @@
+<!-- templates/index.html -->
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>NeuroLingua AI Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Animated Background -->
+
+<div class="bg-wrapper">
+
+    <div class="circle c1"></div>
+    <div class="circle c2"></div>
+    <div class="circle c3"></div>
+    <div class="circle c4"></div>
+
+</div>
+
+<!-- Navbar -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            AI
+        </div>
+
+        <div class="logo-text">
+
+            <p>Azure AI Platform</p>
+
+        </div>
+
+    </div>
+
+    <ul class="nav-links">
+
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Analytics</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">About</a></li>
+
+    </ul>
+
+</nav>
+
+<!-- Main Container -->
+
+<div class="main-container">
+
+    <!-- Left Side -->
+
+    <div class="left-panel">
+
+        <div class="hero-section">
+
+            <span class="badge">
+                Azure Cognitive Services
+            </span>
+
+            <h1>
+                AI Text Analyzer
+                & Translator
+            </h1>
+
+            <p class="hero-text">
+
+                Analyze text intelligently using
+                Azure Translator and Text Analytics.
+                Detect sentiment, extract keywords,
+                and translate into multiple languages
+                instantly with AI.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="primary-btn">
+                    Start Analysis
+                </button>
+
+                <button class="secondary-btn">
+                    Explore Features
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Features -->
+
+        <div class="feature-section">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🌍
+                </div>
+
+                <h3>Language Translation</h3>
+
+                <p>
+                    Translate text into more than
+                    120+ global languages using
+                    Azure Translator Service.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    😊
+                </div>
+
+                <h3>Sentiment Detection</h3>
+
+                <p>
+                    Detect positive, negative,
+                    and neutral sentiments
+                    using AI models.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🔑
+                </div>
+
+                <h3>Keyword Extraction</h3>
+
+                <p>
+                    Extract meaningful keywords
+                    and entities from text content.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+                <h3>Fast Processing</h3>
+
+                <p>
+                    Real-time AI processing powered
+                    by Azure cloud services.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Right Side -->
+
+    <div class="right-panel">
+
+        <div class="glass-card">
+
+            <div class="card-header">
+
+                <h2>Analyze Your Text</h2>
+
+                <p>
+                    Enter text and get AI-powered insights
+                </p>
+
+            </div>
+
+            <!-- Form -->
+
+            <form method="POST">
+
+                <label>
+                    Enter Text
+                </label>
+
+                <textarea
+                    name="text"
+                    placeholder="Type your content here..."
+                    required></textarea>
+
+                <!-- Controls -->
+
+                <div class="controls">
+
+                    <div class="control-box">
+
+                        <label>
+                            Select Language
+                        </label>
+
+                        <select name="language">
+
+                            <option value="hi">Hindi</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+                            <option value="es">Spanish</option>
+                            <option value="ja">Japanese</option>
+                            <option value="it">Italian</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="control-box">
+
+                        <label>
+                            AI Processing
+                        </label>
+
+                        <select>
+
+                            <option>
+                                Standard Analysis
+                            </option>
+
+                            <option>
+                                Deep Analysis
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- Action Buttons -->
+
+                <div class="button-group">
+
+                    <button type="submit"
+                            class="analyze-btn">
+
+                        Analyze Text
+
+                    </button>
+
+                    <button type="reset"
+                            class="reset-btn">
+
+                        Clear
+
+                    </button>
+
+                </div>
+
+            </form>
+
+            <!-- Results -->
+
+            {% if translated_text %}
+
+            <div class="result-card">
+
+                <div class="result-header">
+
+                    <h3>🌍 Translated Text</h3>
+
+                </div>
+
+                <div class="result-content">
+
+                    <p>{{ translated_text }}</p>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+            {% if sentiment %}
+
+            <div class="result-card">
+
+                <div class="result-header">
+
+                    <h3>😊 Sentiment Analysis</h3>
+
+                </div>
+
+                <div class="sentiment-container">
+
+                    {% if sentiment == "positive" %}
+
+                    <div class="positive-box">
+                        Positive
+                    </div>
+
+                    {% elif sentiment == "negative" %}
+
+                    <div class="negative-box">
+                        Negative
+                    </div>
+
+                    {% else %}
+
+                    <div class="neutral-box">
+                        Neutral
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+            {% if key_phrases %}
+
+            <div class="result-card">
+
+                <div class="result-header">
+
+                    <h3>🔑 Key Phrases</h3>
+
+                </div>
+
+                <div class="tag-container">
+
+                    {% for phrase in key_phrases %}
+
+                    <div class="tag">
+                        {{ phrase }}
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Footer -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <h2>NeuroLingua AI</h2>
+
+        <p>
+            Powered by Azure Translator
+            & Text Analytics Services
+        </p>
+
+        <div class="footer-links">
+
+            <a href="#">Privacy</a>
+            <a href="#">Documentation</a>
+            <a href="#">Support</a>
+            <a href="#">Contact</a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
+```
